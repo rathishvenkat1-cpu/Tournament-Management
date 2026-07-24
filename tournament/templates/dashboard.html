@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">
+        🏆 Chess Tournament Dashboard
+    </h2>
+
+    <div class="row">
+
+        <!-- Players -->
+        <div class="col-md-3 mb-3">
+
+            <div class="card shadow border-0 text-center">
+
+                <div class="card-body">
+
+                    <i class="fa fa-users fa-3x text-primary mb-3"></i>
+
+                    <h3>{{ player_count }}</h3>
+
+                    <h5>Players</h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Tournaments -->
+        <div class="col-md-3 mb-3">
+
+            <div class="card shadow border-0 text-center">
+
+                <div class="card-body">
+
+                    <i class="fa fa-trophy fa-3x text-warning mb-3"></i>
+
+                    <h3>{{ tournament_count }}</h3>
+
+                    <h5>Tournaments</h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Matches -->
+        <div class="col-md-3 mb-3">
+
+            <div class="card shadow border-0 text-center">
+
+                <div class="card-body">
+
+                    <i class="fa fa-chess fa-3x text-success mb-3"></i>
+
+                    <h3>{{ match_count }}</h3>
+
+                    <h5>Matches</h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Users -->
+        <div class="col-md-3 mb-3">
+
+            <div class="card shadow border-0 text-center">
+
+                <div class="card-body">
+
+                    <i class="fa fa-user fa-3x text-danger mb-3"></i>
+
+                    <h3>{{ match_count }}</h3>
+
+                    <h5>Users</h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h4 style="margin:20px 0px;" >Quick Actions</h4>
+
+    <div class="mt-3" style="gap:20px; display:flex; justify-content:space-even;">
+
+        <a href="{% url 'player_add' %}" class="btn btn-primary">
+            Add Player
+        </a>
+
+        <a href="{% url 'tournament_add' %}" class="btn btn-success">
+            Add Tournament
+        </a>
+
+        <a href="{% url 'player_list' %}" class="btn btn-info">
+            View Players
+        </a>
+
+        <a href="{% url 'tournament_list' %}" class="btn btn-warning">
+            View Tournaments
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

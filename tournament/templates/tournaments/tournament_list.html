@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2 class="mb-3">Tournaments</h2>
+
+    <a href="{% url 'tournament_add' %}" class="btn btn-success mb-3">
+        Add Tournament
+    </a>
+
+    <!-- Search -->
+    <form method="GET" class="mb-3">
+        <div class="row">
+
+            <div class="col-md-6">
+                <input
+                    type="text"
+                    name="search"
+                    value="{{ search }}"
+                    placeholder="Search Tournament..."
+                    class="form-control">
+            </div>
+
+            <div class="col-md-2">
+                <button class="btn btn-primary">
+                    <i class="fa fa-search"></i> Search
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+    <!-- Table -->
+    <table class="table table-bordered table-striped">
+
+        <thead class="table-dark">
+
+            <tr>
+
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Players</th>
+                <th width="35%">Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for tournament in page_obj %}
+
+            <tr>
+
+                <td>{{ tournament.id }}</td>
+                <td>{{ tournament.name }}</td>
+                <td>{{ tournament.location }}</td>
+                <td>{{ tournament.start_date }}</td>
+                <td>{{ tournament.end_date }}</td>
+
+                <td>
+
+                    {% for player in tournament.players.all %}
+
+                        {{ player.name }}<br>
+
+                    {% empty %}
+
+                        No Players
+
+                    {% endfor %}
+
+                </td>
+
+                <td>
+
+                    <a href="{% url 'tournament_edit' tournament.id %}"
+                       class="btn btn-warning btn-sm">
+
+                        Edit
+
+                    </a>
+
+                    <a href="{% url 'tournament_delete' tournament.id %}"
+                       class="btn btn-danger btn-sm">
+
+                        Delete
+
+                    </a>
+
+                    <a href="{% url 'generate_matches' tournament.id %}"
+                       class="btn btn-primary btn-sm">
+
+                        Generate
+
+                    </a>
+
+                    <a href="{% url 'match_list' tournament.id %}"
+                       class="btn btn-info btn-sm">
+
+                        Matches
+
+                    </a>
+
+                    <a href="{% url 'ranking' tournament.id %}"
+                       class="btn btn-success btn-sm">
+
+                        Ranking
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+        {% empty %}
+
+            <tr>
+
+                <td colspan="7" class="text-center">
+
+                    No Tournament Found
+
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    <!-- Pagination -->
+
+    <nav>
+
+        <ul class="pagination justify-content-center">
+
+            {% if page_obj.has_previous %}
+
+            <li class="page-item">
+
+                <a class="page-link"
+                   href="?page={{ page_obj.previous_page_number }}&search={{ search }}">
+
+                    Previous
+
+                </a>
+
+            </li>
+
+            {% endif %}
+
+            <li class="page-item active">
+
+                <span class="page-link">
+
+                    {{ page_obj.number }}
+
+                </span>
+
+            </li>
+
+            {% if page_obj.has_next %}
+
+            <li class="page-item">
+
+                <a class="page-link"
+                   href="?page={{ page_obj.next_page_number }}&search={{ search }}">
+
+                    Next
+
+                </a>
+
+            </li>
+
+            {% endif %}
+
+        </ul>
+
+    </nav>
+
+</div>
+
+{% endblock %}

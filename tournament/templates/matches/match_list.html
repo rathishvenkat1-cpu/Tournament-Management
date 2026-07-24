@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>{{ tournament.name }} Matches</h2>
+
+<a href="{% url 'generate_matches' tournament.id %}"
+class="btn btn-success mb-3">
+
+Generate Matches
+
+</a>
+
+<table class="table table-bordered">
+
+<tr>
+
+<th>Player 1</th>
+
+<th>Player 2</th>
+
+<th>Winner</th>
+
+</tr>
+
+{% for match in matches %}
+
+<tr>
+
+<td>{{ match.player1 }}</td>
+
+<td>{{ match.player2 }}</td>
+
+<td>{{ match.winner }}</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="3">
+
+No Matches Generated
+
+</td>
+
+</tr>
+<a href="{% url 'ranking' tournament.id %}"
+
+class="btn btn-warning">
+
+View Ranking
+
+</a>
+<h3>Round 1</h3>
+
+<table class="table table-bordered">
+
+{% for match in matches %}
+{% if match.round_number == 1 %}
+<tr>
+    <td>{{ match.player1 }}</td>
+    <td>{{ match.player2 }}</td>
+    <td>{{ match.winner }}</td>
+</tr>
+{% endif %}
+{% endfor %}
+
+</table>
+
+<h3>Round 2</h3>
+
+<table class="table table-bordered">
+
+{% for match in matches %}
+{% if match.round_number == 2 %}
+<tr>
+    <td>{{ match.player1 }}</td>
+    <td>{{ match.player2 }}</td>
+    <td>{{ match.winner }}</td>
+</tr>
+{% endif %}
+{% endfor %}
+
+</table>
+
+<h3>Final</h3>
+
+<table class="table table-bordered">
+
+{% for match in matches %}
+{% if match.round_number == 3 %}
+<tr class="table-success">
+    <td>{{ match.player1 }}</td>
+    <td>{{ match.player2 }}</td>
+    <td>🏆 {{ match.winner }}</td>
+</tr>
+{% endif %}
+{% endfor %}
+
+</table>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
