@@ -25,7 +25,13 @@ SECRET_KEY = 'django-insecure-k57!-m-6xbbt$(5gj!10uuv7u$!&hbkyje$(dh%a==_ooq%g8_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "tournament-management-gnvt.onrender.com",
+    "tournament-management-2.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
+
 
 
 # Application definition
