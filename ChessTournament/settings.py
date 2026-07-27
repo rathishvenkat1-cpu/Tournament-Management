@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "tournament-management-gnvt.onrender.com",
-    "tournament-management-2.onrender.com",
+    "tournament-management-3.onrender.com",
     "localhost",
     "127.0.0.1",
 ]
